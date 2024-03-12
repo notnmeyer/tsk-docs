@@ -1,0 +1,6 @@
+[tasks.deps]
+cmds = ["npm i"]
+
+[tasks.start]
+cmds = ["npm run docusaurus start"]
+
