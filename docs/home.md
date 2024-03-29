@@ -1,15 +1,11 @@
 ---
 id: home
-title: tsk
-sidebar_position: 1
-sidebar_label: Home
+title: The Basics
+sidebar_position: 2
+sidebar_label: The Basics
 ---
 
-## The Basics
-
-`tsk` is a simple task-runner and build tool with opinions. Writing shell and templating in YAML and TOML is awful. `tsk` allows you to do both of these, so it is also awful. However, `tsk` is opinonated about how and where you do those things. Does that make it less awful? Nah.
-
-`tsk` uses TOML to describe units of work called, bear with me, "tasks". By default, your tasks live in a file named `tasks.toml`. A task is composed of at least one command. For example:
+`tsk` is a simple task-runner and build tool with opinions.  `tsk` uses TOML to describe units of work called, bear with me, "tasks". By default, your tasks live in a file named `tasks.toml`. A task is typically composed of one or more commands. For example:
 
 ```toml title="tasks.toml"
 [tasks.hello]
@@ -23,11 +19,11 @@ Running this task does what you'd expect:
 Hello, World!
 ```
 
-Nothing Earth shattering here. What seperates `tsk` from some other tools is how it handles dependencies and how it encourages you to _not_ write extensive shell within your `tasks.toml` file.
+Nothing Earth shattering here. What seperates `tsk` from other tools is how it handles dependencies and how it encourages you to _not_ write extensive shell within your task definitions.
 
 ## Dependencies
 
-A task can include one or more task names in a `deps` attribute. Depedencies hich are other tasks that must execute successful before Dependent relationships are expressed via a task's `deps` attribute.
+A task can include one or more task names in a `deps` attribute. Dependencies are just regular tasks and can have deps of their own, etc.
 
 ```toml title="tasks.toml"
 [tasks.hello]
@@ -48,7 +44,7 @@ Hello, World!
 
 ### Dependency Groups
 
-You may have noticed that `deps` is an array of arrays. Dependency groups are one of `tsk`'s key features. Individual dependencies within a dependency group are exeucted in *parallel*, while entire dependency groups are executed *sequentially*. We can visualize this with the following example:
+You may have noticed that `deps` is an array of arrays. Each nested array is a "dependency group". Dependency groups are one of `tsk`'s key features. Individual dependencies within a dependency group are exeucted in *parallel*, while entire dependency groups are executed *sequentially*. We can visualize this with the following example:
 
 ```toml
 [tasks.a]
@@ -78,4 +74,16 @@ c
 done
 ```
 
-## Avoiding
+## Avoiding Shell in Config Files
+
+Writing shell in configuration files sucks. Luckily, tsk makes it easy to avoid. If your task doesn't include a `cmds` attribute, tsk will look for and execute a script: `tsk/<task-name>`. If your task is more than a few commands or needs flow control, write a script!
+
+```toml title="tasks.toml"
+[tasks.no-script]
+```
+
+```shell
+➜ tsk --list --filter no-script
+[no-script]
+  # will run `tsk/no-script.sh`
+```

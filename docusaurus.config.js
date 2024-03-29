@@ -66,7 +66,7 @@ const config = {
         title: title,
         logo: {
           alt: `${title} logo`,
-          src: 'img/logo.svg',
+          src: 'img/tsk.png',
         },
         items: [
           {
