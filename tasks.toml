@@ -3,4 +3,7 @@ cmds = ["npm i"]
 
 [tasks.start]
 deps = [["deps"]]
+env = {
+  BASE_URL = "/"
+}
 cmds = ["npm run docusaurus start"]
