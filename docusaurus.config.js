@@ -86,6 +86,11 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            href: 'https://github.com/notnmeyer/tsk/issues',
+            label: 'Issues',
+            position: 'right',
+          },
         ],
      },
       footer: {
@@ -95,8 +100,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Installation',
+                to: '/docs/installation',
+              },
+              {
+                label: 'Usage',
+                to: '/docs/usage',
               },
             ],
           },
@@ -104,16 +113,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Discussions',
+                href: 'https://github.com/notnmeyer/tsk/discussions',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Issues',
+                href: 'https://github.com/notnmeyer/tsk/issues',
               },
             ],
           },
@@ -122,7 +127,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/notnmeyer/tsk',
               },
             ],
           },
