@@ -108,6 +108,16 @@ Omit `cmds` to execute `tsk/<task-name>.sh` instead.
 
 Use `{{.CLI_ARGS}}`.
 
+```toml
+[task.example]
+cmds = ['echo "{{.CLI_ARGS}}"']
+```
+
+```shell
+> tsk example -- hello world
+hello world
+```
+
 ## Support for TOML 1.1.0
 
 tsk suppports upcoming TOML 1.1 features, notably the ability to split inline tables across multiple lines and include trailing commas. This can be useful for clearly expressing your tasks. The following tasks snippets are equivalent,
