@@ -16,7 +16,9 @@ tsk --init
 
 `-f`/`--file` can be used to specify the location of the task file. A task's directory defaults to the location of the task file.
 
-TODO: example
+```shell
+> tsk --file path/to/tasks.toml --list
+````
 
 ## Listing tasks
 
@@ -26,7 +28,13 @@ TODO: example
 
 Add `-F`/`--filter` to filter the list to only tasks matching the supplied regex.
 
-TODO: example
+```shell
+> tsk --filter <filter-regex> --list
+```
+
+:::note
+`--filter` only has meaning when used with `--list`
+:::
 
 ## Environment Variables
 
@@ -84,7 +92,11 @@ Environment variables are loaded in the following order. Items lower in the list
 
 Set a task's `dir` attribute to control the directory a task runs in.
 
-TODO: example
+```toml
+[tasks.pwd]
+cmds = ['echo "my pwd is $(pwd)"']
+dir = /tmp
+````
 
 ## Implicitly running a script
 

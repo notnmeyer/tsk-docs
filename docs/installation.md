@@ -27,7 +27,7 @@ See the `install_release` task in [notnmeyer/tsk](https://github.com/notnmeyer/t
 The only dependency necessary to build `tsk` is Go. Clone the repo and run:
 
 ```shell
-go build -o bin/tsk -v cmd/tsk/tsk.go
+go build -v cmd/tsk/tsk.go -o bin/tsk
 ```
 
 If you have an earlier version of `tsk` available, you can save a couple keystrokes:

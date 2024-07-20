@@ -3,7 +3,9 @@ cmds = ["npm i"]
 
 [tasks.start]
 deps = [["deps"]]
-env = {
-  BASE_URL = "/"
-}
+env = { BASE_URL = "/" }
 cmds = ["npm run docusaurus start"]
+
+[tasks.deploy]
+env = { USE_SSH = "true" }
+cmds = ["npm run deploy"]
