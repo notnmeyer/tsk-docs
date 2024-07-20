@@ -100,7 +100,7 @@ dir = /tmp
 
 ## Implicitly running a script
 
-Omit `cmds` to execute `scripts/<task-name>.sh` instead.
+Omit `cmds` to execute `tsk/<task-name>.sh` instead.
 
 ## Dependencies
 
