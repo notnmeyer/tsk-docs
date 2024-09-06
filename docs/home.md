@@ -88,5 +88,13 @@ Writing shell in configuration files sucks. Luckily, tsk makes it easy to avoid.
 ```shell
 ➜ tsk --list --filter no-script
 [no-script]
-  # will run `tsk/no-script.sh`
+  # will run `tsk/no-script`
 ```
+
+:::info
+The script must be executable and should include a hashbang.
+:::
+
+:::info
+Your script doesn't have to be shell. Any valid hashbang will work, provided you have the necessary tools installed.
+:::

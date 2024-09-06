@@ -106,11 +106,15 @@ dir = /tmp
 
 ## Implicitly running a script
 
-Omit the `cmds` attribute to execute a script, `tsk/<task-name>`, instead. The script must be executable and should include a hashbang.
+Omit the `cmds` attribute to execute a script, `tsk/<task-name>`, instead.
+
+:::info
+The script must be executable and should include a hashbang.
+:::
 
 :::info
 Your script doesn't have to be shell. Any valid hashbang will work, provided you have the necessary tools installed.
-::: 
+:::
 
 ## Dependencies
 
