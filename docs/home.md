@@ -1,8 +1,8 @@
 ---
 id: home
-title: The Basics
+title: Core Concepts
 sidebar_position: 2
-sidebar_label: The Basics
+sidebar_label: Core Concepts
 ---
 
 `tsk` is a simple task-runner and build tool with opinions.  `tsk` uses TOML to describe units of work called, bear with me, "tasks". By default, your tasks live in a file named `tasks.toml`. A task is typically composed of one or more commands. For example:
@@ -26,20 +26,20 @@ Nothing Earth shattering here. What seperates `tsk` from other tools is how it h
 A task can include one or more task names in a `deps` attribute. Dependencies are just regular tasks and can have deps of their own, etc.
 
 ```toml title="tasks.toml"
-[tasks.hello]
-deps = [["sponsor"]]
-cmds = ["echo Hello, World!"]
+[tasks.a]
+deps = [["b"]]
+cmds = ["echo task A"]
 
-[tasks.sponsor]
-cmds = ['echo But first a word from our sponsor!']
+[tasks.b]
+cmds = ['echo task B']
 ```
 
-Now, running `hello` will first run `sponsor`:
+Running `a` will first run `b`:
 
 ```shell
-➜ tsk hello
-But first a word from our sponsor!
-Hello, World!
+➜ tsk a
+task b
+task a
 ```
 
 ### Dependency Groups
@@ -59,12 +59,12 @@ cmds = ["echo c"]
 [tasks.main]
 deps = [
   ["a", "b"], # a and b will run in parallel
-  ["c"],      # c will run after one and two have finished
+  ["c"],      # c will run after the previous group finishes
 ]
 cmds = ["echo done"]
 ```
 
-Running `main` we can see that task `b` finished before `a` and that both ran before `c`.
+If you run `main` a few times you'll see that `a` and `b` consistently run before `c`.
 
 ```shell
 ➜ tsk main
@@ -74,6 +74,9 @@ c
 done
 ```
 
+:::tip
+Remember that tasks within a dependency group *run in parallel* and may not finish in a consistent order. Place dependencies in different groups when the order they run matters.
+:::
 ## Avoiding Shell in Config Files
 
 Writing shell in configuration files sucks. Luckily, tsk makes it easy to avoid. If your task doesn't include a `cmds` attribute, tsk will look for and execute a script: `tsk/<task-name>`. If your task is more than a few commands or needs flow control, write a script!
