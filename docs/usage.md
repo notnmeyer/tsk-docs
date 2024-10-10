@@ -26,6 +26,15 @@ If you want to be explicit, `-f`/`--file` can be used to specify the location of
 If the file can't be found, `tsk` exits 2 and will display an error.
 :::
 
+## Identifying the tasks.toml being used
+
+tsk can print the path to the tasks.toml it finds with `--which`. This can be useful if there's ambiguiity about which tasks.toml is being used.
+
+```shell
+> tsk --which
+/path/to/tasks.toml
+```
+
 ## Listing tasks
 
 `-l`/`--list` displays the tasks in a task file.
