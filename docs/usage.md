@@ -39,6 +39,12 @@ tsk can print the path to the tasks.toml it finds with `--which`. This can be us
 
 `-l`/`--list` displays the tasks in a task file.
 
+### Listing tasks in other formats
+
+`tsk` can display available tasks in a variety of formats via `--output <text|toml|json|md>`. The default is "text".
+
+Also see `tsk --help` for available formats.
+
 ### Filtering tasks
 
 Add `-F`/`--filter` to filter the list to only tasks matching the supplied regex.
