@@ -1,11 +1,14 @@
 [tasks.deps]
+desc = "install deps"
 cmds = ["npm i"]
 
 [tasks.start]
+desc = "run docs site locally"
 deps = [["deps"]]
 env = { BASE_URL = "/" }
 cmds = ["npm run docusaurus start"]
 
 [tasks.deploy]
+desc = "deploy docs site"
 env = { USE_SSH = "true" }
 cmds = ["npm run deploy"]
