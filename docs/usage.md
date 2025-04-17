@@ -59,7 +59,7 @@ Add `-F`/`--filter` to filter the list to only tasks matching the supplied regex
 
 ## Environment Variables
 
-Like you may or may not expect, tsk will pass along the parent environment's env to the task's env. You can add or customize a task's environment with the following options.
+By default, `tsk` makes the parent environment's env available to the task. You can add or customize a task's environment with the following options.
 
 ### `env`
 
@@ -97,17 +97,17 @@ cmds = ["echo hello $NAME"]
 
 ### Variable Hierarchy
 
-Environment variables are loaded in the following order. Items lower in the list override locations appearing higher.
+Environment variables are loaded in the following order. Items loaded later in the list override locations loaded earlier.
 
 - the top-level `env` key
 - the top-level `dotenv` key
 - `tasks.<task_name>.env`
-- the parent process, e.g., MY_VAR=hey tsk ...
+- the parent process, e.g., `MY_VAR=hey tsk ...``
 - `tasks.<task_name>.dotenv`
 
 ### Pure tasks
 
-"Pure" tasks do not inherit their parent environment (with the exceptions of `$USER` and `$HOME`, which are always inherited). You can set a task's `pure` attribute to `true` if a task should always be pure, or use the `--pure` CLI option to enable this as a one-off.
+"Pure" tasks do not inherit their parent environment (with the exceptions of `$USER` and `$HOME`, which are always inherited). You can set a task's `pure` attribute to `true` if a task should always be pure, or use the `--pure` CLI option to run tasks with a clean env.
 
 ## Run a task from a subdirectory
 
@@ -122,6 +122,15 @@ dir = /tmp
 ## Implicitly running a script
 
 Omit the `cmds` attribute to execute a script, `tsk/<task-name>`, instead.
+
+```toml title="tasks.toml"
+[tasks.no_cmd]
+````
+
+```shell
+➜ tsk no_cmd
+Hello from ./tsk/no_cmd!
+```
 
 :::info
 The script must be executable and should include a hashbang.
@@ -169,7 +178,7 @@ cmds = ["echo done"]
 
 `tsk` supports limited templating of the `tasks.toml` file.
 
-Additional input passed at the CLI after `--` can be templated into `tasks.toml` via the `CLI_ARGS` variables and using Go templates.
+Additional input passed at the CLI after `--` can be templated into `tasks.toml` via the `CLI_ARGS` variable.
 
 ```toml
 [task.example]
