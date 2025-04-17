@@ -17,9 +17,13 @@ brew install notnmeyer/tsk/tsk
 Download your platform's relevant binary from the [releases](https://github.com/notnmeyer/tsk/releases) page.
 
 :::note Note for macOS users
-The tsk binary uses an ad-hoc signature and is not notarized by Apple. If you download the binary tarball with Safari it will be quarantined. You can either bypass the quarantine with the usual methods, or download the release from the terminal with cURL, wget, etc.
+The tsk binary uses an ad-hoc signature and is not notarized by Apple. If you download the binary tarball with Safari it will be quarantined. You can remove the quartine attribute with xattr or download the release from the terminal with curl (or similar) to bypass quarantine.
 
-See the `install_release` task in [notnmeyer/tsk](https://github.com/notnmeyer/tsk) for an example of the latter.
+```shell
+xattr -rd com.apple.quarantine ./tsk
+```
+
+See the `install_release` task in [notnmeyer/tsk/tasks.toml](https://github.com/notnmeyer/tsk/blob/main/tasks.toml) for an example of the latter.
 :::
 
 ## Source
